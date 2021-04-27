@@ -10,13 +10,20 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
   secret: 'Super secret secret',
-  cookie: {},
+  cookie: {maxAge: 6000},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
     db: sequelize,
   })
 };
+
+if (app.get("env") === "production") {
+  // Serve secure cookies, requires HTTPS
+  sess.cookie.secure = true; 
+  sess.proxy = true
+  app.set('trust proxy', 1)
+}
 
 app.use(session(sess));
 const helpers = require('./utils/helpers');
