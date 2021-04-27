@@ -13,10 +13,9 @@ module.exports = {
       .split('?')[0];
     },
     format_plural: (word, count) => {
-      if (count === 1) {
-          return word.toLowerCase();
-      } else {
-          return `${word.toLowerCase()}s`
-      }
+      if (count !== 1) {
+          return `${word}s`;
+      } 
+      return word;
     }
-  }
+  };
