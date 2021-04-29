@@ -5,12 +5,13 @@ const sequelize = require('./config/connection');
 const exphbs = require('express-handlebars'); //require npm package for express handlebars
 const app = express();
 const session = require('express-session');
+//const dotenv = require('dotenv').config();
 
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
-  secret: process.env.SESSION_SECRET,
-  cookie: {maxAge: 6000},
+  secret: 'Super secret secret',
+  cookie: {path: '/'},
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({
