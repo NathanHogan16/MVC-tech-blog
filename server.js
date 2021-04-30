@@ -19,6 +19,10 @@ const sess = {
   })
 };
 
+var distDir = __dirname + "/dist/";
+
+app.use(express.static(distDir));
+
 if (app.get("env") === "production") {
   // Serve secure cookies, requires HTTPS
   sess.cookie.secure = true; 
